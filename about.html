@@ -1,34 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - Team Profiles</title>
+  </head>
+<style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+
+    /* About section styling */
+    .about-section {
+      padding: 60px 20px;
+      background-color: #ffffff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+
+    /* Team grid styling */
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .team-member {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      width: 220px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .team-member h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+
+    .team-member p {
+      font-size: 1em;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .team-member {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .team-member {
+        width: 100%;
+      }
+    }
+  </style>
 <body>
+  <section class="about-section">
     <div class="container">
-        <h1>About Our Resume Builder</h1>
-        
-        <div class="about-content">
-            <p>Welcome to our Resume Builder application! We provide a simple and efficient way to create professional resumes in just a few steps.</p>
-            
-            <h2>Our Mission</h2>
-            <p>To help job seekers present their skills and experience in the best possible way to potential employers.</p>
-            
-            <h2>Features</h2>
-            <ul>
-                <li>Easy-to-use interface</li>
-                <li>Data stored securely in your browser</li>
-                <li>Quick preview functionality</li>
-                <li>Multiple section options</li>
-            </ul>
+      <h1>Meet Our Team</h1>
+      <div class="team-grid">
+        <div class="team-member">
+          <img src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-1/481158370_631589432791732_4771450335403215457_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGMFCukC07v4iuBhQtVaKeSQFDuUVScydJAUO5RVJzJ0qiy98NZNYNpgpmFNYnLWeUB6URfeKJlDSDvcCj8SMMi&_nc_ohc=yDBRF8HykC8Q7kNvwHcgiEG&_nc_oc=Adnhvq1K3x0YILsZNJodQRghAH9chAjySQ_8zd8TWhLLpc4LBbXrXnhGXpy7f405-6Y&_nc_zt=24&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=eeB29xdHeiJBAVRTGT0tRA&oh=00_AfI3yga_J5VWR6KROMt3OFDiiLLXU1yA-lKY8GyiI5ip2w&oe=6831187D" alt="Alice Garcia">
+          <h2>Erick Mersader</h2>
+          <p>Age: 21</p>
+          <p>Strand: ICT</p>
         </div>
-        
-        <div class="navigation">
-            <a href="index.html" class="btn">Create New Resume</a>
-            <a href="preview.html" class="btn">View Your Resume</a>
+        <div class="team-member">
+          <img src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-1/468266339_1794948751247039_1048219053634646471_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeE8LuFeDQVz3Vr8IKh7EnoQYt8wv9-4phZi3zC_37imFv0SeaV1ABEUYp3PYMZe7inkK844S7He8Q8tctbdK1oF&_nc_ohc=6s9KRUf9reYQ7kNvwE8CV15&_nc_oc=AdkxtWfk1Bs7ccHpVRfZcaoD8npBud3ODlzG6VJvuRFomFRsmesXO5-jwK_PQn6GDq0&_nc_zt=24&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=NnyvpH8vUH-bYDZGQVaDhA&oh=00_AfJnYorO66q5qPcryE8gUk7kqFTQ5DqgAJQVmk-nrgVO9g&oe=68311C3F" alt="Brian Cruz">
+          <h2>Kobe Taneza</h2>
+          <p>Age: 18</p>
+          <p>Strand: HUMSS</p>
         </div>
+        <div class="team-member">
+          <img src="https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-1/485120146_1912854782582993_5543943620123841387_n.jpg?stp=c0.0.720.720a_dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGgoYW_g3_Ba9LFfV33hs87jl1B8jIeGwqOXUHyMh4bCkWwjJ7dHH3g1dIM1lA051dLDQBOGBDmQBcKuaHGcOtl&_nc_ohc=W7kdL2fb8BwQ7kNvwE5IHuD&_nc_oc=Admq_01kvl5HI3RDNlTYsdCR35LvKezNDmE03F16QyMLkgnty8jRfZ9hdoNCJT1pGbU&_nc_zt=24&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=TiyvVIqz_GXpI_Brca_DeA&oh=00_AfLMxK4JgClKriwl0TrgNuLiP43MSwUeGx6FTZl0kqmySA&oe=68311A3A" alt="Carla Reyes">
+          <h2>Juswa Dacula</h2>
+          <p>Age: 17</p>
+          <p>Strand: ABM</p>
+        </div>
+        <div class="team-member">
+          <img src="https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-1/472495267_900210948939505_7986082652953314973_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeEXQYOo6TgWDRkcqGDn15gbrVKhbwSmIpWtUqFvBKYilVhWwPnOhO7gni82A0LKNyTuN4avndiASAjoL4Q7S-YD&_nc_ohc=meIFoLRY0F0Q7kNvwECADwh&_nc_oc=Adlw0q_bq72UsYyn5njott7hdhVi8T8ymV8phCjiKGJVbqwB13QGsS9rKCxtNRZ5rpQ&_nc_zt=24&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=fOZCKkPbV2uVWLP-pl3EXA&oh=00_AfJBPjCHvAAiCjn9gARephulOwDY-WrKZmtaDDi8su0kGw&oe=68313A90" alt="Daniel Lee">
+          <h2>Bjay Marvilla</h2>
+          <p>Age: 18</p>
+          <p>Strand: TVL</p>
+        </div>
+        <div class="team-member">
+          <img src="https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-1/495372494_1185044173356409_1120771931545225860_n.jpg?stp=cp6_dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeFWK6vXcOhKxcl-iXiAdVgvnd8IpO4BcH2d3wik7gFwfTUf-2YDd5nEgM-YEVZ-9yjYlZfZ9NVvW6C-eElASSzU&_nc_ohc=HLmIclyg_B0Q7kNvwH2TAA8&_nc_oc=AdnCjQlyYBLpakdJDa9Y_6VzQzWWo1XOnAivCzOr88vdiA7AhY6LiggLrQ8ATUlpezQ&_nc_zt=24&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=u323pRDs-az6raNHeX1GXg&oh=00_AfJfNryOiKH00X11JkWmPuM3wPljf2f_a-QqLZFUpHvHHQ&oe=68312FD0" alt="Ella Santos">
+          <h2>Gabo Gamboa</h2>
+          <p>Age: 17</p>
+          <p>Strand: GAS</p>
+        </div>
+      </div>
     </div>
+  </section>
 </body>
 </html>

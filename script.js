@@ -2,7 +2,7 @@
 let db;
 const dbName = "ResumeDB";
 const storeName = "resumes";
-const dbVersion = 1;
+const dbVersion = 2; // Version increased for schema change
 
 function initDB() {
     return new Promise((resolve, reject) => {
@@ -26,8 +26,18 @@ function initDB() {
     });
 }
 
-// Save resume data
-function saveResume(data) {
+// Convert image to Base64
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+// Save resume data with image
+async function saveResume(data) {
     return new Promise((resolve, reject) => {
         const transaction = db.transaction(storeName, "readwrite");
         const store = transaction.objectStore(storeName);
@@ -64,9 +74,26 @@ function getAllResumes() {
     });
 }
 
-// Handle form submission
+// Handle form submission and image preview
 document.addEventListener('DOMContentLoaded', async () => {
     await initDB();
+
+    // Image preview functionality
+    const photoInput = document.getElementById('photo');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    if (photoInput && imagePreview) {
+        photoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="preview-image">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
     // If we're on the form page
     if (document.getElementById('resumeForm')) {
@@ -75,14 +102,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const resumeData = {
-                name: document.getElementById('name').value,
-                age: document.getElementById('age').value,
-                section: document.getElementById('section').value,
-                timestamp: new Date().getTime()
-            };
-            
+            const photoFile = document.getElementById('photo').files[0];
+            if (!photoFile) {
+                alert('Please upload a photo');
+                return;
+            }
+
             try {
+                const imageBase64 = await getBase64(photoFile);
+                
+                const resumeData = {
+                    name: document.getElementById('name').value,
+                    age: document.getElementById('age').value,
+                    section: document.getElementById('section').value,
+                    photo: imageBase64,
+                    timestamp: new Date().getTime()
+                };
+                
                 await saveResume(resumeData);
                 window.location.href = 'preview.html';
             } catch (error) {
@@ -104,10 +140,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 previewDiv.innerHTML = `
                     <h2>Your Most Recent Resume</h2>
                     <div class="resume-card featured">
-                        <div class="resume-item"><strong>Name:</strong> ${latest.name}</div>
-                        <div class="resume-item"><strong>Age:</strong> ${latest.age}</div>
-                        <div class="resume-item"><strong>Section:</strong> ${latest.section}</div>
-                        <div class="resume-item"><strong>Created:</strong> ${new Date(latest.timestamp).toLocaleString()}</div>
+                        <div class="resume-photo">
+                            <img src="${latest.photo}" alt="${latest.name}'s Photo">
+                        </div>
+                        <div class="resume-details">
+                            <div class="resume-item"><strong>Name:</strong> ${latest.name}</div>
+                            <div class="resume-item"><strong>Age:</strong> ${latest.age}</div>
+                            <div class="resume-item"><strong>Section:</strong> ${latest.section}</div>
+                            <div class="resume-item"><strong>Created:</strong> ${new Date(latest.timestamp).toLocaleString()}</div>
+                        </div>
                     </div>
                 `;
                 
@@ -118,10 +159,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <div class="resume-list">
                             ${resumes.slice(1).map(resume => `
                                 <div class="resume-card">
-                                    <div class="resume-item"><strong>Name:</strong> ${resume.name}</div>
-                                    <div class="resume-item"><strong>Section:</strong> ${resume.section}</div>
-                                    <div class="resume-item"><strong>Created:</strong> ${new Date(resume.timestamp).toLocaleDateString()}</div>
-                                    <button class="view-btn" data-id="${resume.id}">View Details</button>
+                                    <div class="resume-photo-small">
+                                        <img src="${resume.photo}" alt="${resume.name}'s Photo">
+                                    </div>
+                                    <div class="resume-details">
+                                        <div class="resume-item"><strong>Name:</strong> ${resume.name}</div>
+                                        <div class="resume-item"><strong>Section:</strong> ${resume.section}</div>
+                                        <div class="resume-item"><strong>Created:</strong> ${new Date(resume.timestamp).toLocaleDateString()}</div>
+                                        <button class="view-btn" data-id="${resume.id}">View Details</button>
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>

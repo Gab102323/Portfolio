@@ -18,7 +18,7 @@ body {
     margin-top: 30px;
 }
 
-h1 {
+h1, h2 {
     color: #2c3e50;
     text-align: center;
     margin-bottom: 30px;
@@ -37,6 +37,7 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="file"],
 select {
     width: 100%;
     padding: 10px;
@@ -61,50 +62,18 @@ button:hover, .btn:hover {
     background-color: #2980b9;
 }
 
-/* Preview Styles */
-#resumePreview {
-    margin: 30px 0;
-    padding: 20px;
-    border: 1px solid #eee;
+/* Image Preview */
+.image-preview {
+    margin-top: 10px;
+}
+
+.preview-image {
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 4px;
-    background-color: #fafafa;
+    border: 1px solid #ddd;
 }
 
-.resume-item {
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-.resume-item:last-child {
-    border-bottom: none;
-}
-
-.resume-item strong {
-    display: inline-block;
-    width: 100px;
-}
-
-/* Navigation */
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-/* About Page */
-.about-content {
-    margin: 30px 0;
-}
-
-.about-content h2 {
-    color: #2c3e50;
-    margin-top: 25px;
-}
-
-.about-content ul {
-    padding-left: 20px;
-}
 /* Resume Card Styles */
 .resume-card {
     border: 1px solid #ddd;
@@ -112,6 +81,8 @@ button:hover, .btn:hover {
     padding: 15px;
     margin-bottom: 15px;
     background-color: #fff;
+    display: flex;
+    gap: 20px;
 }
 
 .resume-card.featured {
@@ -120,10 +91,46 @@ button:hover, .btn:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.resume-photo {
+    flex: 0 0 150px;
+}
+
+.resume-photo img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.resume-photo-small {
+    flex: 0 0 80px;
+}
+
+.resume-photo-small img {
+    width: 100%;
+    height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.resume-details {
+    flex: 1;
+}
+
 .resume-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 15px;
+}
+
+.resume-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.resume-item:last-child {
+    border-bottom: none;
 }
 
 .view-btn {
@@ -140,9 +147,25 @@ button:hover, .btn:hover {
     background-color: #27ae60;
 }
 
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .resume-list {
         grid-template-columns: 1fr;
+    }
+    
+    .resume-card {
+        flex-direction: column;
+    }
+    
+    .resume-photo, .resume-photo-small {
+        flex: 0 0 auto;
+        margin-bottom: 15px;
     }
 }
